@@ -6,6 +6,15 @@ const bot = new Bot(process.env.BOT_API_KEY);
 
 const products = ['Кубик', 'Телефон', "Ручка", "Стакан", "Заметка", "Книга"].join('\n')
 
+async function broadcastMessage(message) {
+    try {
+      await bot.api.sendMessage("982478044", message);
+      console.log(`Сообщение отправлено в чат ${982478044}`);
+    } catch (error) {
+      console.error(`Ошибка при отправке сообщения в чат ${982478044}:`, error);
+    }
+}
+
 bot.api.setMyCommands(
   [
     {
@@ -23,6 +32,10 @@ bot.api.setMyCommands(
     {
       command: 'employees',
       description: 'Список сотрудников'
+    },
+    {
+      command: 'mood',
+      description: 'Выбор категории'
     }
   ]
 )
@@ -31,13 +44,34 @@ bot.command('start', async (ctx) => {
   setTimeout(async () => {
     await ctx.react('🎄');
   }, 1000)
-  await ctx.reply('Привет, я бот!');
+  const chatId = ctx.chat.id;
+  console.log(chatId)
+  await ctx.reply('Привет!');
 })
 
-// bot.command('showData', async (ctx) => {
-//   const moodKeyboard = new Keyboard().text('Посты').row().text('Комментарии').row().text("Профиль").resized()
-//   await ctx.reply('Выберите категорию?', {
-//     reply_markup: moodKeyboard,
+// bot.on('message', async (ctx) => {
+//   console.log(ctx.update.message.text)
+//   if (ctx.chat.id === 2080554505) {
+//     await broadcastMessage(ctx.update.message.text);
+//   }
+// });
+
+bot.command('mood', async (ctx) => {
+  console.log('Command "mood" received'); // Логгирование для проверки вызова команды
+
+  const moodLabels = ['Посты', 'Комментарии', 'Профиль'];
+  const rows = moodLabels.map((label) => [Keyboard.text(label)]);
+  const moodKeyboard = Keyboard.from(rows).resized();
+
+  console.log(JSON.stringify(moodKeyboard, null, 2), 'moodKeyboard');
+  await ctx.reply('Выберите категорию?', {
+    reply_markup: moodKeyboard,
+  });
+});
+
+// bot.hears('123', async (ctx) => {
+//   await ctx.reply(products, {
+//     reply_markup: {remove_keyboard: true}
 //   })
 // })
 
@@ -62,7 +96,6 @@ bot.command('comments', async (ctx) => {
 
 bot.command('employees', async (ctx) => {
   const employees = await fetchEmployees()
-  console.log(employees)
   for (const employee of employees.data) {
     await ctx.reply(employee.name)
   }

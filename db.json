@@ -23,7 +23,9 @@
       "postId": 2
     }
   ],
-  "profile": {
-    "name": "Amit Kumar"
-  }
+  "profile": [
+    {
+      "name": "Amit Kumar"
+    }
+  ]
 }
