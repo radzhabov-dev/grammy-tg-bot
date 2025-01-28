@@ -27,5 +27,14 @@
     {
       "name": "Amit Kumar"
     }
+  ],
+  "contacts": [
+    {
+      "id": "3e54",
+      "phone_number": "+992888448410",
+      "first_name": "Рустам",
+      "last_name": "Раджабов",
+      "user_id": 2080554505
+    }
   ]
 }
