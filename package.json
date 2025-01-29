@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "db": "json-server --watch db.json --port=3001",
-    "start": "concurrently \"node index.js\" \"npm run db\""
+    "database": "json-server --watch db.json --port=3001 --static false",
+    "start": "concurrently \"node index.js\" \"npm run database\""
   },
   "keywords": [],
   "author": "",
