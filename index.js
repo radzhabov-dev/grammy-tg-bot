@@ -7,6 +7,16 @@ import {
   fetchPosts,
 } from "./api.js";
 import { hydrate } from "@grammyjs/hydrate";
+import express from 'express'
+
+
+const app = express()
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 const bot = new Bot(process.env.BOT_API_KEY);
 bot.use(hydrate());
