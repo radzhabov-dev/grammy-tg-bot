@@ -1,14 +1,8 @@
 import "dotenv/config";
-import { Bot, GrammyError, HttpError, InlineKeyboard, Keyboard } from "grammy";
-import {
-  addingContact,
-  fetchComments,
-  fetchEmployees,
-  fetchPosts,
-} from "./api.js";
+import { Bot, GrammyError, HttpError, InlineKeyboard } from "grammy";
 import { hydrate } from "@grammyjs/hydrate";
-import express from 'express'
-
+import express from "express";
+import { fetchCategories, fetchProductsByCategoryId, registrationOfNewUsers } from "./api.js";
 
 const app = express()
 
@@ -48,6 +42,10 @@ bot.api.setMyCommands([
     command: "menu",
     description: "Получить меню",
   },
+  {
+    command: "categories",
+    description: "Получить категорию",
+  },
   // {
   //   command: "posts",
   //   description: "Список постов",
@@ -74,8 +72,7 @@ bot.command("start", async (ctx) => {
   setTimeout(async () => {
     await ctx.react("🎄");
   }, 1000);
-  const chatId = ctx.chat.id;
-  console.log(chatId);
+  await registrationOfNewUsers(ctx.chat)
   await ctx.reply("Привет!");
 });
 
@@ -83,20 +80,65 @@ const menuKeyboard = new InlineKeyboard()
   .text("Узнать статус заказа", "order-status")
   .text("Обратиться в службу поддержки", "support");
 
-const backKeyboard = new InlineKeyboard().text("< Назад в меню", "back");
-
 bot.command("menu", async (ctx) => {
   await ctx.reply("Выберите действие", {
     reply_markup: menuKeyboard
   });
 });
 
-bot.callbackQuery('order-status', async (ctx) => {
-  await ctx.callbackQuery.message.editText("Статус заказа: Оформлен", {
-    reply_markup: backKeyboard
-  })
-  await ctx.answerCallbackQuery()
+
+
+bot.command("categories", async (ctx) => {
+  const categories = await fetchCategories()
+  const categoriesKeyboard = new InlineKeyboard();
+
+  categories.forEach((category, idx) => {
+    if (idx % 2 === 0) {
+      categoriesKeyboard.row();
+    }
+    categoriesKeyboard.text(category.name, String(category.id))
+  });
+
+  await ctx.reply("Выберите категорию:", {
+    reply_markup: categoriesKeyboard
+  });
 });
+
+const backKeyboard = new InlineKeyboard().text("< Назад в меню", "back");
+
+bot.callbackQuery(/^category(\d+)$/, async (ctx) => {
+  const categoryId = ctx.match[0];
+
+  const products = await fetchProductsByCategoryId(categoryId);
+
+  // Если товаров в категории нет, уведомляем пользователя
+  if (!products || products.length === 0) {
+    await ctx.answerCallbackQuery({
+      text: "В этой категории товаров не найдено.",
+      show_alert: true,
+    });
+    return;
+  }
+
+  // Отправляем заголовок
+  await ctx.reply("*Список товаров*", { parse_mode: "Markdown" });
+
+  // Для каждого продукта отправляем фотографию с подписью
+  for (const product of products) {
+    await ctx.replyWithPhoto(
+      product.images && product.images.length > 0 ? product.images[0] : undefined,
+      {
+        caption: `*${product.title}*\nЦена: ${product.price}\n${product.description}\nКоличество: ${product.quantity}`,
+        parse_mode: "Markdown"
+      }
+    );
+  }
+
+  await ctx.answerCallbackQuery();
+});
+
+
+
 
 bot.callbackQuery('support', async (ctx) => {
   await ctx.callbackQuery.message.editText("Напишите ваш запрос: ", {
@@ -111,6 +153,8 @@ bot.callbackQuery('back', async (ctx) => {
   })
   await ctx.answerCallbackQuery()
 })
+
+
 
 // bot.on('message', async (ctx) => {
 //   console.log(ctx.update.message.text)

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "database": "json-server --watch db.json --port=3000 --static false",
-    "start": "concurrently \"node index.js\" \"npm run database\""
+    "start": "concurrently \"nodemon ./index.js \" \"npm run database\""
   },
   "keywords": [],
   "author": "",

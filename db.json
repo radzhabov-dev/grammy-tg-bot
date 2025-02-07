@@ -1,40 +1,210 @@
 {
-  "posts": [
+  "products": [
     {
-      "id": 1,
-      "title": "JSON-Server",
-      "author": "Amit"
+      "id": "product1",
+      "title": "Apple MacBook Air 13\" M2",
+      "price": "1199$",
+      "description": "Лёгкий и мощный ноутбук с процессором M2, Retina-дисплеем и длительным временем автономной работы.",
+      "quantity": 15,
+      "category_id": "category4",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=MacBook+Air+M2"
+      ]
     },
     {
-      "id": 2,
-      "title": "Node.js",
-      "author": "Mohit"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "Great post!",
-      "postId": 1
+      "id": "product2",
+      "title": "Samsung Galaxy S23 Ultra",
+      "price": "1299$",
+      "description": "Флагманский смартфон с 200 МП камерой, процессором Snapdragon 8 Gen 2 и S Pen.",
+      "quantity": 30,
+      "category_id": "category2",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=Galaxy+S23+Ultra"
+      ]
     },
     {
-      "id": 2,
-      "body": "Informative!",
-      "postId": 2
+      "id": "product3",
+      "title": "iPad Pro 12.9\" M2",
+      "price": "1099$",
+      "description": "Профессиональный планшет с дисплеем Liquid Retina XDR, чипом M2 и поддержкой Apple Pencil.",
+      "quantity": 20,
+      "category_id": "category3",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=iPad+Pro+12.9"
+      ]
+    },
+    {
+      "id": "product4",
+      "title": "Sony Bravia XR 65\" OLED",
+      "price": "2499$",
+      "description": "Премиальный 4K OLED-телевизор с процессором XR и поддержкой Dolby Vision.",
+      "quantity": 10,
+      "category_id": "category5",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=Sony+Bravia+XR+65"
+      ]
+    },
+    {
+      "id": "product5",
+      "title": "Apple Watch Series 9",
+      "price": "499$",
+      "description": "Умные часы с улучшенным процессором S9, датчиком кислорода в крови и Always-On дисплеем.",
+      "quantity": 50,
+      "category_id": "category6",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=Apple+Watch+Series+9"
+      ]
+    },
+    {
+      "id": "product6",
+      "title": "Logitech MX Master 3S",
+      "price": "99$",
+      "description": "Продвинутая беспроводная мышь с высокой точностью, удобным дизайном и тихими кнопками.",
+      "quantity": 40,
+      "category_id": "category7",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=MX+Master+3S"
+      ]
+    },
+    {
+      "id": "product7",
+      "title": "NVIDIA GeForce RTX 4090",
+      "price": "1599$",
+      "description": "Топовая видеокарта для гейминга и работы с графикой, оснащенная 24 ГБ GDDR6X памяти.",
+      "quantity": 8,
+      "category_id": "category1",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=RTX+4090"
+      ]
+    },
+    {
+      "id": "product8",
+      "title": "Dell UltraSharp 27 Monitor",
+      "price": "499$",
+      "description": "27-дюймовый монитор с разрешением 4K, отличной цветопередачей и тонкими рамками.",
+      "quantity": 20,
+      "category_id": "category1",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=Dell+UltraSharp+27"
+      ]
+    },
+    {
+      "id": "product9",
+      "title": "Google Pixel 7 Pro",
+      "price": "899$",
+      "description": "Флагманский смартфон с отличной камерой, чистым Android и долгим временем работы.",
+      "quantity": 25,
+      "category_id": "category2",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=Pixel+7+Pro"
+      ]
+    },
+    {
+      "id": "product10",
+      "title": "Samsung Galaxy Tab S8",
+      "price": "649$",
+      "description": "Планшет с большим экраном, мощным процессором и стилусом для удобной работы.",
+      "quantity": 18,
+      "category_id": "category3",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=Galaxy+Tab+S8"
+      ]
+    },
+    {
+      "id": "product11",
+      "title": "HP Spectre x360",
+      "price": "1399$",
+      "description": "Премиальный ноутбук-трансформер с сенсорным экраном и стильным дизайном.",
+      "quantity": 12,
+      "category_id": "category4",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=HP+Spectre+x360"
+      ]
+    },
+    {
+      "id": "product12",
+      "title": "LG OLED CX 55\"",
+      "price": "1299$",
+      "description": "55-дюймовый OLED-телевизор с потрясающим качеством изображения и поддержкой HDR.",
+      "quantity": 8,
+      "category_id": "category5",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=LG+OLED+CX+55"
+      ]
+    },
+    {
+      "id": "product13",
+      "title": "Samsung Galaxy Watch 5",
+      "price": "299$",
+      "description": "Умные часы с множеством фитнес-функций, длительным временем работы и стильным дизайном.",
+      "quantity": 35,
+      "category_id": "category6",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=Galaxy+Watch+5"
+      ]
+    },
+    {
+      "id": "product14",
+      "title": "Razer BlackWidow Keyboard",
+      "price": "149$",
+      "description": "Механическая клавиатура с RGB-подсветкой, созданная специально для геймеров.",
+      "quantity": 22,
+      "category_id": "category7",
+      "images": [
+        "https://dummyimage.com/300x300/cccccc/000000?text=BlackWidow+Keyboard"
+      ]
     }
   ],
-  "profile": [
+  "categories": [
     {
-      "name": "Amit Kumar"
+      "id": "category1",
+      "name": "Техника",
+      "description": "Компьютеры, комплектующие и другие технологические устройства."
+    },
+    {
+      "id": "category2",
+      "name": "Смартфоны",
+      "description": "Современные мобильные телефоны с продвинутыми функциями."
+    },
+    {
+      "id": "category3",
+      "name": "Планшеты",
+      "description": "Портативные устройства для работы и развлечений."
+    },
+    {
+      "id": "category4",
+      "name": "Ноутбуки",
+      "description": "Мощные и компактные ноутбуки для работы и игр."
+    },
+    {
+      "id": "category5",
+      "name": "Телевизоры",
+      "description": "Современные телевизоры с поддержкой 4K, OLED и Smart TV."
+    },
+    {
+      "id": "category6",
+      "name": "Часы",
+      "description": "Умные и классические наручные часы."
+    },
+    {
+      "id": "category7",
+      "name": "Аксессуары",
+      "description": "Мыши, клавиатуры, наушники и другие дополнения для техники."
     }
   ],
-  "contacts": [
+  "users": [
     {
-      "id": "3e54",
-      "phone_number": "+992888448410",
+      "id": 1980472772,
+      "first_name": "Асадбек",
+      "username": "Asadbek_11_11",
+      "type": "private"
+    },
+    {
+      "id": 2080554505,
       "first_name": "Рустам",
       "last_name": "Раджабов",
-      "user_id": 2080554505
+      "username": "radzhabov_dev",
+      "type": "private"
     }
   ]
 }
